@@ -38,6 +38,12 @@ app.use(express.urlencoded({ extended: false }));
 // Create Routes
 app.use("/cards", cardRoutes);
 
+app.get("/ping", (req, res) => {
+  return res
+    .status(200)
+    .json({ status: true, message: "Server Up and Running" });
+});
+
 // Start Backend Server
 app.listen(process.env.PORT, () => {
   console.log(`Server Started on Port ${process.env.PORT}`);
