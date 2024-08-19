@@ -71,6 +71,4 @@ const getCard = async (req, res) => {
   }
 };
 
-const searchCards = async (req, res) => {};
-
-module.exports = { createCard, getCards, getCard, searchCards };
+module.exports = { createCard, getCards, getCard };

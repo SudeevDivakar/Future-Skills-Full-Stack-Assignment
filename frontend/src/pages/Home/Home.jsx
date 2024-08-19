@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function Home() {
-  const [cards, setCards] = useState();
+  const [cards, setCards] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     async function getCards() {
@@ -18,6 +19,12 @@ export default function Home() {
     getCards();
   }, []);
 
+  const filteredCards = cards.filter(
+    (card) =>
+      card.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      card.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>
       <Navbar />
@@ -27,23 +34,23 @@ export default function Home() {
           className="px-4 py-4 rounded-md w-[37rem] mt-8"
           type="text"
           placeholder="Search"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
       <div
         className={`flex justify-around flex-wrap pt-10 ${
-          cards && (cards.length > 0 ? "pb-20" : "pb-10")
+          filteredCards.length > 0 ? "pb-20" : "pb-10"
         }`}
       >
-        {cards && cards.length > 0 ? (
-          cards.map((card, index) => {
-            return (
-              <Card
-                title={card.title}
-                description={card.description}
-                key={card._id}
-              />
-            );
-          })
+        {filteredCards.length > 0 ? (
+          filteredCards.map((card) => (
+            <Card
+              title={card.title}
+              description={card.description}
+              key={card._id}
+            />
+          ))
         ) : (
           <h1 className="text-2xl font-semibold">No Cards To Display :(</h1>
         )}
