@@ -53,10 +53,12 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <div className="h-80 bg-violet-100 flex flex-col justify-center items-center">
-        <h1 className="text-6xl font-semibold">How can we help?</h1>
+      <div className="h-80 bg-violet-100 flex flex-col justify-center items-center text-center px-4">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold">
+          How can we help?
+        </h1>
         <input
-          className="px-4 py-4 rounded-md w-[37rem] mt-8"
+          className="px-4 py-3 md:py-4 rounded-md w-full sm:w-[24rem] md:w-[30rem] lg:w-[37rem] mt-8"
           type="text"
           placeholder="Search Cards"
           value={searchTerm}
@@ -64,30 +66,36 @@ export default function Home() {
         />
       </div>
       <div
-        className={`flex justify-around flex-wrap pt-10 ${
+        className={`flex flex-col items-center pt-10 ${
           filteredCards.length > 0 ? "pb-20" : "pb-10"
         }`}
       >
-        <h1 className="text-center w-full font-bold text-3xl mb-5">Cards</h1>
-        {filteredCards.length > 0 ? (
-          filteredCards.map((card) => (
-            <Card
-              title={card.title}
-              description={card.description}
-              key={card._id}
-            />
-          ))
-        ) : (
-          <h1 className="text-2xl font-semibold">No Cards To Display :(</h1>
-        )}
+        <h1 className="text-center w-full font-bold text-2xl sm:text-3xl mb-5">
+          Cards
+        </h1>
+        <div className="flex flex-wrap justify-around">
+          {filteredCards.length > 0 ? (
+            filteredCards.map((card) => (
+              <Card
+                title={card.title}
+                description={card.description}
+                key={card._id}
+              />
+            ))
+          ) : (
+            <h1 className="text-2xl font-semibold">No Cards To Display :(</h1>
+          )}
+        </div>
       </div>
 
-      <div className="flex justify-center py-10 bg-violet-100">
+      <div className="flex justify-center py-10 bg-violet-100 px-4">
         <form
-          className="bg-white p-6 rounded-md shadow-md w-[37rem]"
+          className="bg-white p-6 rounded-md shadow-md w-full sm:w-[24rem] md:w-[30rem] lg:w-[37rem]"
           onSubmit={handleCreateCard}
         >
-          <h2 className="text-3xl font-semibold mb-4">Create a New Card</h2>
+          <h2 className="text-2xl sm:text-3xl font-semibold mb-4">
+            Create a New Card
+          </h2>
           <div className="mb-4">
             <label className="block text-gray-700 mb-2">Card Title</label>
             <input
@@ -110,14 +118,12 @@ export default function Home() {
               required
             ></textarea>
           </div>
-          {createError.length > 0 ? (
+          {createError.length > 0 && (
             <h1 className="text-red-400 mb-5">{createError}</h1>
-          ) : (
-            ""
           )}
           <button
             type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 w-full"
           >
             Create Card
           </button>
