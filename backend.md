@@ -25,5 +25,5 @@ The objective of this assignment is to create a RESTful API that allows users to
 
 3. **Error Handling:**
    - **Non-existing card:** Implemented error handling for the `GET /cards/:title` endpoint if no such card exists in the database.
-   - **Validation Errors:** Implemented validation errors the `POST /cards` endpoint.
+   - **Validation Errors:** Implemented validation errors for the `POST /cards` endpoint.
    - **Server Errors:** Implemented Server Errors for all API endpoints.
